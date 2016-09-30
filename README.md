@@ -56,15 +56,24 @@ Run the following query to count the number of Journal Articles inserted in the
 database of your choice (syntax may differ depending on the database):
 
 ```
-SELECT count(*) FROM <schema>.JournalArticle where companyId = <companyId>;
+SELECT companyId, count(*) FROM JournalArticle group by companyId;
 ```
 
 Run the following query to count the number of Journal Articles indexed in the
 Elasticsearch server:
 
 ```
-curl -XGET 'http://localhost:9200/liferay-<companyId>/_count' -d 
+curl -XPOST 'http://localhost:9200/_search?pretty' --data \
+\
 '{
+  "size": 0,
+  "aggregations": {
+    "JournalArticle per companyId": {
+      "terms": {
+        "field": "companyId"
+      }
+    }
+  },
   "query": {
     "term": {
       "entryClassName": "com.liferay.journal.model.JournalArticle"
