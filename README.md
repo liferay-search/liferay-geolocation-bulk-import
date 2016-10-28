@@ -14,12 +14,6 @@ Build this project:
 
 Deploy the resulting bundle (see `osgi/modules`) into a Liferay Portal
 
-You also need to deploy these modules (in Portal's `osgi/test`):
-
-`com.liferay.portal.test.jar`
-`com.liferay.portal.test.integration.jar`
-`com.liferay.dynamic.data.mapping.test.util`
-
 Start Liferay Portal
 
 [Open the gogo shell](https://dev.liferay.com/develop/reference/-/knowledge_base/7-0/using-the-felix-gogo-shell)

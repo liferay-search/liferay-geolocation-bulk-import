@@ -7,8 +7,6 @@ import com.liferay.portal.kernel.xml.Document;
 import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.xml.SAXReaderImpl;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -22,32 +20,18 @@ public class Request311ToJournalArticleXMLContentTranslator {
 
 		GeolocationDemoDataset dataset = json.parse();
 
-		System.out.println(
-			new Request311ToJournalArticleXMLContentTranslator()
-				.translate(dataset)
-				);
+		Request311ToJournalArticleXMLContentTranslator translator =
+			new Request311ToJournalArticleXMLContentTranslator();
+
+		dataset.entries().map(translator::translate).forEach(
+			System.out::println);
 
 		System.out.println(
 			"$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
 			+ "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 	}
 
-	Collection<String> translate(GeolocationDemoDataset dataset) throws Exception {
-		final ArrayList<String> xmls = new ArrayList<>(dataset.size());
-
-		dataset.accept(new GeolocationDemoDataset.Visitor() {
-
-			@Override
-			public void visit(Request311 entry) {
-				xmls.add(translate(entry));
-			}
-
-		});
-
-		return xmls;
-	}
-
-	protected String translate(Request311 r) {
+	public String translate(Request311 r) {
 		Document document = createEmptyDocument();
 
 		String geolocation =

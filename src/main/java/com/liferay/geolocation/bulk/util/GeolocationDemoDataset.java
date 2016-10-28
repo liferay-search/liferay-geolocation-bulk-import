@@ -1,27 +1,17 @@
 package com.liferay.geolocation.bulk.util;
 
+import java.util.stream.Stream;
+
 public class GeolocationDemoDataset {
-
-	interface Visitor {
-
-		void visit(Request311 entry) throws Exception;
-
-	}
 
 	GeolocationDemoDataset(Request311[] entries) {
 		this.entries = entries;
 	}
 
-	void accept(Visitor visitor) throws Exception {
-		for (Request311 entry : entries) {
-			visitor.visit(entry);
-		}
+	public Stream<Request311> entries() {
+		return Stream.of(entries);
 	}
 
 	Request311[] entries;
-
-	public int size() {
-		return entries.length;
-	}
 
 }
