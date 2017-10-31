@@ -6,15 +6,17 @@ Clone this repository
 
 Note: the Liferay Workspace should be configured in an empty directory - *not* under portal-master.
 
-Move this project under `modules` in your Liferay Workspace (the one you configured above) 
+Move this project under `modules` in your Liferay Workspace (the one you configured above)
 
-Build this project:
-
-`gw deploy`
-
-Deploy the resulting bundle (see `osgi/modules`) into a Liferay Portal
+Run [`deploy.sh`](https://github.com/arboliveira/liferay-geolocation-bulk-import/blob/master/deploy.sh) (requires env vars) to build and deploy the bundle into Liferay Portal
 
 Start Liferay Portal
+
+# Portlet
+
+_Search Development_ > _Geolocation Bulk Load_
+
+# Gogo command
 
 [Open the gogo shell](https://dev.liferay.com/develop/reference/-/knowledge_base/7-0/using-the-felix-gogo-shell)
 
@@ -26,17 +28,17 @@ Confirm the command is available:
 
 `help | grep geolocation`
 
-Execute the command: 
+Execute the command:
 
 `geolocation:load`
 
-You can pass a number as a parameter to determine how 
-many Journal Articles will be inserted. If you choose to not pass any number, the 
+You can pass a number as a parameter to determine how
+many Journal Articles will be inserted. If you choose to not pass any number, the
 default value will be `10`.
 
-In case the project doesn't build correctly nor the bundle doesn't start 
+In case the project doesn't build correctly nor the bundle doesn't start
 immediately after deployment, double check module versions in `bnd.bnd`,
-dependencies versions in `build.gradle`, 
+dependencies versions in `build.gradle`,
 and the versions of the same packages deployed in the Portal.
 
 # DATABASE x ELASTICSEARCH COMPARISON
