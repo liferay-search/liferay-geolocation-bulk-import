@@ -13,4 +13,5 @@ Include-Resource:\
 Import-Package: \
 	com.liferay.journal.service;version=1.0.0,\
 	com.liferay.journal.model;version=1.0.0,\
+	com.liferay.portal.kernel.util;version=9.0.0,\
 	*
