@@ -1,28 +1,26 @@
 # GEOLOCATION DEMO DATASET BULK LOAD
 
-Clone this repository
+----
 
-[Create a Liferay Workspace with the Blade CLI if you don't have one](https://dev.liferay.com/develop/tutorials/-/knowledge_base/7-0/creating-a-liferay-workspace-with-blade-cli)
+# How to install
 
-Note: the Liferay Workspace should be configured in an empty directory - *not* under portal-master.
+[Download the latest release](https://github.com/arboliveira/liferay-geolocation-bulk-import/releases) and drop into `deploy` under your Liferay server dir.
 
-Move this project under `modules` in your Liferay Workspace (the one you configured above)
+# How to use
 
-Run [`deploy.sh`](https://github.com/arboliveira/liferay-geolocation-bulk-import/blob/master/deploy.sh) (requires env vars) to build and deploy the bundle into Liferay Portal
+_Add_ > _Widgets_ > _Search Development_ > _Geolocation Bulk Load_
 
-Start Liferay Portal
+You can create up to 1,000 documents.
 
-# Portlet
+# Is this thing on?
 
-_Search Development_ > _Geolocation Bulk Load_
+_Control Panel_ > _Configuration_ > _Gogo Shell_
 
-# Gogo command
-
-[Open the gogo shell](https://dev.liferay.com/develop/reference/-/knowledge_base/7-0/using-the-felix-gogo-shell)
+[(or alternatively, Gogo Shell from the command line)](https://dev.liferay.com/develop/reference/-/knowledge_base/7-0/using-the-felix-gogo-shell)
 
 Confirm this module has been loaded:
 
-`lb | grep "Liferay Geolocation Bulk Load"`
+`lb "Liferay Geolocation Bulk Load"`
 
 Confirm the command is available:
 
@@ -33,15 +31,31 @@ Execute the command:
 `geolocation:load`
 
 You can pass a number as a parameter to determine how
-many Journal Articles will be inserted. If you choose to not pass any number, the
+many documents will be inserted. If you choose to not pass any number, the
 default value will be `10`.
 
-In case the project doesn't build correctly nor the bundle doesn't start
+# Building from source
+
+Clone this repository.
+
+[Create a Liferay Workspace with the Blade CLI if you don't have one.](https://dev.liferay.com/develop/tutorials/-/knowledge_base/7-0/creating-a-liferay-workspace-with-blade-cli)
+
+Note: the Liferay Workspace should be configured in an empty directory - *not* under portal-master.
+
+Move this project under `modules` in your Liferay Workspace (the one you configured above).
+
+Run [`deploy.sh`](https://github.com/arboliveira/liferay-geolocation-bulk-import/blob/master/deploy.sh) (requires env vars) to build and deploy the bundle into Liferay.
+
+Start Liferay.
+
+# Troubleshooting
+
+If the project doesn't build correctly, or the bundle doesn't start
 immediately after deployment, double check module versions in `bnd.bnd`,
 dependencies versions in `build.gradle`,
-and the versions of the same packages deployed in the Portal.
+and versions of same packages deployed in Liferay.
 
-# DATABASE x ELASTICSEARCH COMPARISON
+# Database x Elasticsearch check
 
 After running the load command, you can check if everything was indexed
 correctly. Just count the number of rows in the JournalArticle table in the DB
@@ -81,18 +95,18 @@ curl -XPOST 'http://localhost:9200/_search?pretty' --data \
 If you're using elasticsearch-head to run this query, make sure you're using
 the `POST` method instead of `GET`.
 
-# SOURCE URLS
+# Source data
+
+http://www.cityofboston.gov/doit/apps/citizensconnect.asp
 
 https://data.cityofboston.gov/City-Services/311-Service-Requests/awu8-dc52
+
 https://data.cityofboston.gov/browse?limitTo=datasets&utf8=✓
+
 https://data.cityofboston.gov/resource/awu8-dc52.json
 
 # APIS
 
 https://github.com/socrata/datasync
+
 https://github.com/socrata/soda-java
-
-# APP URL
-
-http://www.cityofboston.gov/doit/apps/citizensconnect.asp
-
