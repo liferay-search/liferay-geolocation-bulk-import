@@ -15,9 +15,12 @@ Import-Package: \
 	com.liferay.dynamic.data.mapping.service;version="[1,999)",\
 	com.liferay.journal.model;version="[1,999)",\
 	com.liferay.journal.service;version="[1,999)",\
+	com.liferay.portal.kernel.exception;version="[1,999)",\
 	com.liferay.portal.kernel.model;version="[1,999)",\
 	com.liferay.portal.kernel.portlet;version="[1,999)",\
+	com.liferay.portal.kernel.portlet.bridges.mvc;version="[1,999)",\
 	com.liferay.portal.kernel.security.auth;version="[1,999)",\
+	com.liferay.portal.kernel.security.permission;version="[1,999)",\
 	com.liferay.portal.kernel.service;version="[1,999)",\
 	com.liferay.portal.kernel.util;version="[1,999)",\
 	\
