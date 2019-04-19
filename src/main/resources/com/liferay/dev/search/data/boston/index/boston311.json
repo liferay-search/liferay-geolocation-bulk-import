@@ -1,0 +1,65 @@
+{
+	"mappings": {
+		"_doc": {
+			"properties": {
+				"case_enquiry_id": {
+					"type": "text",
+					"store": true
+				},
+				"case_status": {
+					"type": "keyword",
+					"store": true
+				},
+				"case_title": {
+					"type": "text",
+					"store": true
+				},
+				"city_council_district": {
+					"type": "integer",
+					"store": true
+				},
+				"closed_dt": {
+					"type": "date",
+					"format": "strict_date_hour_minute_second",
+					"store": true
+				},
+				"closure_reason": {
+					"type": "text",
+					"store": true
+				},
+				"department": {
+					"type": "keyword",
+					"store": true
+				},
+				"fire_district": {
+					"type": "integer",
+					"store": true
+				},
+				"geolocation": {
+					"type": "geo_point",
+					"store": true
+				},
+				"location": {
+					"type": "text",
+					"store": true
+				},
+				"neighborhood": {
+					"type": "text",
+					"store": true
+				},
+				"reason": {
+					"type": "text",
+					"store": true
+				},
+				"source": {
+					"type": "text",
+					"store": true
+				},
+				"type": {
+					"type": "text",
+					"store": true
+				}
+			}
+		}
+	}
+}

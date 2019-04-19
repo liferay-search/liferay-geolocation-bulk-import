@@ -97,13 +97,15 @@ the `POST` method instead of `GET`.
 
 # Source data
 
-http://www.cityofboston.gov/doit/apps/citizensconnect.asp
+https://data.boston.gov/dataset/311-service-requests/resource/2968e2c0-d479-49ba-a884-4ef523ada3c0
 
-https://data.cityofboston.gov/City-Services/311-Service-Requests/awu8-dc52
+https://www.boston.gov/departments/innovation-and-technology/apps#bos-311
 
-https://data.cityofboston.gov/browse?limitTo=datasets&utf8=✓
+https://www.cityofboston.gov/311/
 
-https://data.cityofboston.gov/resource/awu8-dc52.json
+https://data.boston.gov/dataset/311-service-requests
+
+https://data.boston.gov/group
 
 # APIS
 

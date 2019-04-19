@@ -1,5 +1,6 @@
 package com.liferay.geolocation.bulk.util;
 
+import com.liferay.dev.search.data.boston.index.Boston311IndexDefinition;
 import com.liferay.dynamic.data.mapping.model.DDMForm;
 import com.liferay.dynamic.data.mapping.model.DDMStructure;
 import com.liferay.dynamic.data.mapping.model.DDMTemplate;
@@ -15,6 +16,11 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.model.BaseModel;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.LocaleUtil;
+import com.liferay.portal.search.document.Document;
+import com.liferay.portal.search.document.DocumentBuilderFactory;
+import com.liferay.portal.search.engine.adapter.SearchEngineAdapter;
+import com.liferay.portal.search.engine.adapter.document.IndexDocumentRequest;
+import com.liferay.portal.search.geolocation.GeoBuilders;
 
 import java.util.HashMap;
 import java.util.Locale;
@@ -28,6 +34,8 @@ import org.osgi.service.component.annotations.Reference;
 @Component(service = JournalArticleBulkLoader.class)
 public class JournalArticleBulkLoader {
 
+	private Request311ToSearchDocumentTranslator translatorSearch;
+
 	public void load() throws Exception {
 		init();
 
@@ -38,6 +46,9 @@ public class JournalArticleBulkLoader {
 			System.out.println(x.title);
 			System.out.println(x.xml);
 		};
+
+		this.translatorSearch =
+			new Request311ToSearchDocumentTranslator(documentBuilderFactory, geoBuilders);
 
 		dataset.entries().limit(limit).map(this::toTitleContent).forEach(
 			counter.andThen(this::addArticle));
@@ -71,6 +82,7 @@ public class JournalArticleBulkLoader {
 
 		String title;
 		String xml;
+		Document doc;
 	}
 
 	private TitleContent toTitleContent(Request311 entry) {
@@ -79,6 +91,7 @@ public class JournalArticleBulkLoader {
 			{
 				title = entry.case_title;
 				xml = translator.translate(entry);
+				doc = translatorSearch.translate(entry);
 			}
 		};
 	}
@@ -87,6 +100,8 @@ public class JournalArticleBulkLoader {
 		if (dryRun) {
 			return;
 		}
+
+		indexDocument(titleContent.doc);
 
 		try {
 			addArticle(titleContent.title, titleContent.xml);
@@ -97,6 +112,15 @@ public class JournalArticleBulkLoader {
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	private void indexDocument(Document doc) {
+		IndexDocumentRequest indexDocumentRequest = new IndexDocumentRequest(
+			Boston311IndexDefinition.INDEX_NAME, doc);
+
+		indexDocumentRequest.setType(Boston311IndexDefinition.TYPE_NAME);
+
+		searchEngineAdapter.execute(indexDocumentRequest);
 	}
 
 	private void addArticle(String title, String xml) throws Exception {
@@ -153,6 +177,12 @@ public class JournalArticleBulkLoader {
 		new Request311ToJournalArticleXMLContentTranslator();
 
 	@Reference
+	protected DocumentBuilderFactory documentBuilderFactory;
+
+	@Reference
+	protected GeoBuilders geoBuilders;
+
+	@Reference
 	protected JournalArticleLocalService journalArticleLocalService;
 
 	@Reference
@@ -166,5 +196,8 @@ public class JournalArticleBulkLoader {
 
 	@Reference
 	protected DDMTemplateFactory ddmTemplateFactory;
+
+	@Reference
+	protected SearchEngineAdapter searchEngineAdapter;
 
 }
