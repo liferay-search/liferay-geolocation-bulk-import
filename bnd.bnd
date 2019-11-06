@@ -13,6 +13,7 @@ Include-Resource:\
 Import-Package: \
 	com.liferay.dynamic.data.mapping.model;version="[1,999)",\
 	com.liferay.dynamic.data.mapping.service;version="[1,999)",\
+	com.liferay.dynamic.data.mapping.util;version="[1,999)",\
 	com.liferay.journal.model;version="[1,999)",\
 	com.liferay.journal.service;version="[1,999)",\
 	com.liferay.portal.kernel.exception;version="[1,999)",\

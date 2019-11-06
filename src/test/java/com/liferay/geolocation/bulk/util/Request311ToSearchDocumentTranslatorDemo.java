@@ -14,10 +14,11 @@
 
 package com.liferay.geolocation.bulk.util;
 
-import com.liferay.portal.search.elasticsearch6.internal.document.DefaultElasticsearchDocumentFactory;
-import com.liferay.portal.search.elasticsearch6.internal.document.ElasticsearchDocumentFactory;
+import com.liferay.portal.search.document.Document;
 import com.liferay.portal.search.internal.document.DocumentBuilderFactoryImpl;
 import com.liferay.portal.search.internal.geolocation.GeoBuildersImpl;
+
+import java.util.stream.Stream;
 
 /**
  * @author André de Oliveira
@@ -33,14 +34,24 @@ public class Request311ToSearchDocumentTranslatorDemo {
 			new Request311ToSearchDocumentTranslator(
 				new DocumentBuilderFactoryImpl(), new GeoBuildersImpl());
 
+		Stream<Document> documentsStream = dataset.entries()
+		.map(translator::translate);
+
+		Stream stream = documentsStream.map(Document::getFields);
+
+		/*
+		import com.liferay.portal.search.elasticsearch6.internal.document.DefaultElasticsearchDocumentFactory;
+		import com.liferay.portal.search.elasticsearch6.internal.document.ElasticsearchDocumentFactory;
+
 		ElasticsearchDocumentFactory elasticsearchDocumentFactory =
 			new DefaultElasticsearchDocumentFactory();
 
-		dataset.entries()
-		.map(translator::translate)
+		stream = documentsStream
 		.map(elasticsearchDocumentFactory::getElasticsearchDocument)
-		.map(org.elasticsearch.common.Strings::toString)
-		.forEach(System.out::println);
+		.map(org.elasticsearch.common.Strings::toString);
+		*/
+
+		stream.forEach(System.out::println);
 
 		System.out.println(
 			"$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
