@@ -24,5 +24,6 @@ Import-Package: \
 	com.liferay.portal.kernel.security.permission;version="[1,999)",\
 	com.liferay.portal.kernel.service;version="[1,999)",\
 	com.liferay.portal.kernel.util;version="[1,999)",\
+	com.liferay.portal.search.engine.adapter.document;version="[1,999)",\
 	\
 	*
