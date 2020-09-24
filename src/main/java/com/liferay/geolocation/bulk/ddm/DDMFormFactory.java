@@ -1,7 +1,5 @@
 package com.liferay.geolocation.bulk.ddm;
 
-import static com.liferay.dynamic.data.mapping.model.DDMFormFieldType.TEXT;
-
 import com.liferay.dynamic.data.mapping.model.DDMForm;
 import com.liferay.dynamic.data.mapping.model.DDMFormField;
 import com.liferay.dynamic.data.mapping.model.DDMFormFieldType;
@@ -24,7 +22,7 @@ public class DDMFormFactory {
 		boolean repeatable = false;
 
 		DDMForm ddmForm = getSampleDDMForm(
-			"name", "string", text_indexType, repeatable, TEXT,
+			"name", "string", text_indexType, repeatable, DDMFormFieldType.TEXT,
 			new Locale[] {
 				LocaleUtil.US
 			}, LocaleUtil.US);
@@ -33,28 +31,28 @@ public class DDMFormFactory {
 			ddmForm, "geolocation", "string", DDMFormFieldType.GEOLOCATION,
 			keyword_indexType);
 		addFieldToForm(
-			ddmForm, "case_enquiry_id", "string", TEXT, keyword_indexType); // 101000295623
-		addFieldToForm(ddmForm, "case_title", "string", TEXT, text_indexType); // Improper
+			ddmForm, "case_enquiry_id", "string", DDMFormFieldType.TEXT, keyword_indexType); // 101000295623
+		addFieldToForm(ddmForm, "case_title", "string", DDMFormFieldType.TEXT, text_indexType); // Improper
 																				// Storage
 																				// of
 																				// Trash
 																				// (Barrels)
 		addFieldToForm(
-			ddmForm, "city_council_district", "string", TEXT,
+			ddmForm, "city_council_district", "string", DDMFormFieldType.TEXT,
 			keyword_indexType); // 1
 		addFieldToForm(
-			ddmForm, "closed_dt", "datetime", "datetime", keyword_indexType); // 2011-07-06T16:55:32
+			ddmForm, "closed_dt", "datetime", DDMFormFieldType.DATE, keyword_indexType); // 2011-07-06T16:55:32
 		addFieldToForm(
-			ddmForm, "closure_reason", "string", TEXT, text_indexType); // Case
+			ddmForm, "closure_reason", "string", DDMFormFieldType.TEXT, text_indexType); // Case
 																		// Closed
 																		// VIOISS:
 																		// Violation
 																		// Filed
 		addFieldToForm(
-			ddmForm, "department", "string", TEXT, keyword_indexType); // ISD
+			ddmForm, "department", "string", DDMFormFieldType.TEXT, keyword_indexType); // ISD
 		addFieldToForm(
-			ddmForm, "fire_district", "string", TEXT, keyword_indexType); // 1
-		addFieldToForm(ddmForm, "location", "string", TEXT, text_indexType); // 347
+			ddmForm, "fire_district", "string", DDMFormFieldType.TEXT, keyword_indexType); // 1
+		addFieldToForm(ddmForm, "location", "string", DDMFormFieldType.TEXT, text_indexType); // 347
 																				// Meridian
 																				// St
 																				// East
@@ -62,31 +60,31 @@ public class DDMFormFactory {
 																				// MA
 																				// 02128
 		addFieldToForm(
-			ddmForm, "location_street_name", "string", TEXT, text_indexType); // 347
+			ddmForm, "location_street_name", "string", DDMFormFieldType.TEXT, text_indexType); // 347
 																				// Meridian
 																				// St
-		addFieldToForm(ddmForm, "neighborhood", "string", TEXT, text_indexType); // East
+		addFieldToForm(ddmForm, "neighborhood", "string", DDMFormFieldType.TEXT, text_indexType); // East
 																					// Boston
 		addFieldToForm(
-			ddmForm, "ontime_status", "string", TEXT, keyword_indexType); // ONTIME
+			ddmForm, "ontime_status", "string", DDMFormFieldType.TEXT, keyword_indexType); // ONTIME
 		addFieldToForm(
-			ddmForm, "open_dt", "datetime", "datetime", keyword_indexType); // 2011-07-05T14:48:09
+			ddmForm, "open_dt", "datetime", DDMFormFieldType.DATE, keyword_indexType); // 2011-07-05T14:48:09
 		addFieldToForm(
-			ddmForm, "police_district", "string", TEXT, keyword_indexType); // a7
+			ddmForm, "police_district", "string", DDMFormFieldType.TEXT, keyword_indexType); // a7
 		addFieldToForm(
-			ddmForm, "property_id", "string", TEXT, keyword_indexType); // 84847
+			ddmForm, "property_id", "string", DDMFormFieldType.TEXT, keyword_indexType); // 84847
 		addFieldToForm(
-			ddmForm, "pwd_district", "string", TEXT, keyword_indexType); // 09
-		addFieldToForm(ddmForm, "queue", "string", TEXT, text_indexType); // ISD_Code
+			ddmForm, "pwd_district", "string", DDMFormFieldType.TEXT, keyword_indexType); // 09
+		addFieldToForm(ddmForm, "queue", "string", DDMFormFieldType.TEXT, text_indexType); // ISD_Code
 																			// Enforcement
 																			// (INTERNAL)
-		addFieldToForm(ddmForm, "reason", "string", TEXT, text_indexType); // Code
+		addFieldToForm(ddmForm, "reason", "string", DDMFormFieldType.TEXT, text_indexType); // Code
 																			// Enforcement
-		addFieldToForm(ddmForm, "subject", "string", TEXT, text_indexType); // Inspectional
+		addFieldToForm(ddmForm, "subject", "string", DDMFormFieldType.TEXT, text_indexType); // Inspectional
 																			// Services
 		addFieldToForm(
-			ddmForm, "target_dt", "datetime", "datetime", keyword_indexType); // 2011-07-07T14:46:15
-		addFieldToForm(ddmForm, "type", "string", TEXT, text_indexType); // Improper
+			ddmForm, "target_dt", "datetime", DDMFormFieldType.DATE, keyword_indexType); // 2011-07-07T14:46:15
+		addFieldToForm(ddmForm, "type", "string", DDMFormFieldType.TEXT, text_indexType); // Improper
 																			// Storage
 																			// of
 																			// Trash
