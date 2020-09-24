@@ -46,6 +46,17 @@ public class GeolocationBulkLoadMVCActionCommand extends BaseMVCActionCommand {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
+		try {
+			load(actionRequest);
+		}
+		catch (Exception exception) {
+			exception.printStackTrace();
+
+			throw exception;
+		}
+	}
+
+	protected void load(ActionRequest actionRequest) throws Exception {
 		int limit = ParamUtil.getInteger(actionRequest, "limit", 10);
 
 		boolean dryRun = ParamUtil.getBoolean(actionRequest, "dryRun", true);
