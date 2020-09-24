@@ -5,6 +5,7 @@ import com.liferay.geolocation.bulk.util.JournalArticleBulkLoader;
 
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
 
 @Component(
@@ -29,6 +30,11 @@ public class GeolocationBulkLoadCommand {
 	@Activate
 	protected void start() {
 		System.out.println("Geolocation Bulk Load is ready...");
+	}
+
+	@Deactivate
+	protected void stop() {
+		System.out.println("Geolocation Bulk Load deactivated...");
 	}
 
 	@Reference
