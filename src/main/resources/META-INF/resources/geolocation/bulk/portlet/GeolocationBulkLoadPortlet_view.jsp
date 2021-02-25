@@ -35,27 +35,27 @@ GeolocationBulkLoadPortletDisplayContext geolocationBulkLoadPortletDisplayContex
 	<portlet:param name="mvcActionCommandName" value="redirectSearchBar" />
 </portlet:actionURL>
 
-<aui:form action="<%= portletURL %>" method="post" name="fm">
-	<aui:fieldset id="searchContainer">
-		<div class="input-group search-bar">
-			<aui:field-wrapper cssClass="search-field" inlineField="<%= true %>">
-				<aui:input
-					autoFocus="true"
-					cssClass="search-bar-input"
-					label="com.liferay.geolocation.bulk.how-many"
-					name="<%= geolocationBulkLoadPortletDisplayContext.getLimitParameterName() %>"
-					placeholder="com.liferay.geolocation.bulk.how-many"
-					title="search"
-					type="text"
-					value="<%= geolocationBulkLoadPortletDisplayContext.getLimitString() %>"
-				/>
-			</aui:field-wrapper>
+<div class="container-md">
+	<h1><liferay-ui:message key="com.liferay.geolocation.bulk.title" /></h1>
+
+	<aui:form action="<%= portletURL %>" method="post" name="fm">
+		<aui:fieldset id="searchContainer">
+			<aui:input
+				autoFocus="true"
+				label="com.liferay.geolocation.bulk.how-many"
+				name="<%= geolocationBulkLoadPortletDisplayContext.getLimitParameterName() %>"
+				placeholder="com.liferay.geolocation.bulk.how-many"
+				value="<%= geolocationBulkLoadPortletDisplayContext.getLimitString() %>"
+			>
+				<aui:validator name="required" />
+			</aui:input>
 
 			<aui:input label="com.liferay.geolocation.bulk.dry-run" name="<%= geolocationBulkLoadPortletDisplayContext.getDryRunParameterName() %>" type="checkbox" value="<%= geolocationBulkLoadPortletDisplayContext.isDryRun() %>" />
+		</aui:fieldset>
 
-			<aui:field-wrapper cssClass="input-group-btn search-field" inlineField="<%= true %>">
-				<aui:button icon="icon-search" primary="<%= false %>" type="submit" value="" />
-			</aui:field-wrapper>
-		</div>
-	</aui:fieldset>
-</aui:form>
+		<aui:button-row>
+			<aui:button primary="<%= true %>" type="submit" value="go" />
+		</aui:button-row>
+	</aui:form>
+
+</div>
