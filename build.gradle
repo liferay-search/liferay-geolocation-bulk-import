@@ -13,7 +13,7 @@ dependencies {
 	compile group: "com.liferay", name: "com.liferay.portal.search.spi", version: "3.3.1"
 
 	compile group: "com.liferay", name: "com.liferay.petra.string", version: "2.0.0"
-	compile group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "9.0.1-SNAPSHOT"
+	compile group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "11.8.0"
 	compile group: "com.liferay.portal", name: "com.liferay.portal.impl", version: "2.9.0"
 	compile group: "com.liferay.portal", name: "com.liferay.util.taglib", version: "2.0.0"
 
